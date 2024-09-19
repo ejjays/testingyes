@@ -4,15 +4,13 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  // your config
-  const firebaseConfig = {
-  apiKey: "AIzaSyBJ7sD1YDAwtloLInnMuM6V9it3vFMPag0",
-  authDomain: "ejjays-4ff24.firebaseapp.com",
-  projectId: "ejjays-4ff24",
-  storageBucket: "ejjays-4ff24.appspot.com",
-  messagingSenderId: "579883345795",
-  appId: "1:579883345795:web:6d30366f33bf70197e78b6",
-  measurementId: "G-K8S3KYNQGZ"
+  apiKey: "AIzaSyB4BpQYfuGgom3VlUJONNR92weDC5BMJf0",
+  authDomain: "fir-rtc-68de1.firebaseapp.com",
+  projectId: "fir-rtc-68de1",
+  storageBucket: "fir-rtc-68de1.appspot.com",
+  messagingSenderId: "266450816523",
+  appId: "1:266450816523:web:4259a31e69f908d792410e",
+  measurementId: "G-XHC9DY0ZDX"
 };
 
 if (!firebase.apps.length) {
