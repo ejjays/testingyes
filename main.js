@@ -39,6 +39,9 @@ const callInput = document.getElementById('callInput');
 const answerButton = document.getElementById('answerButton');
 const remoteVideo = document.getElementById('remoteVideo');
 const hangupButton = document.getElementById('hangupButton');
+const localVideoPlaceholder = document.getElementById('localVideoPlaceholder');
+const remoteVideoPlaceholder = document.getElementById('remoteVideoPlaceholder');
+const videoIcon = document.getElementById('video-icon');
 
 // 1. Setup media sources
 webcamButton.onclick = async () => {
@@ -61,6 +64,8 @@ webcamButton.onclick = async () => {
   callButton.disabled = false;
   answerButton.disabled = false;
   webcamButton.disabled = true;
+  webcamVideo.style.display = 'block';
+  localVideoPlaceholder.style.display = 'none';
 };
 
 // 2. Create an offer
@@ -69,7 +74,7 @@ callButton.onclick = async () => {
   const offerCandidates = callDoc.collection('offerCandidates');
   const answerCandidates = callDoc.collection('answerCandidates');
 
-  callInput.value = callDoc.id; // Set the call ID for the input field
+  callInput.value = callDoc.id;
 
   pc.onicecandidate = (event) => {
     event.candidate && offerCandidates.add(event.candidate.toJSON());
@@ -107,7 +112,7 @@ callButton.onclick = async () => {
 
 // 3. Answer the call with the unique ID
 answerButton.onclick = async () => {
-  const callId = callInput.value; // Get the call ID from input
+  const callId = callInput.value;
   const callDoc = firestore.collection('calls').doc(callId);
   const answerCandidates = callDoc.collection('answerCandidates');
   const offerCandidates = callDoc.collection('offerCandidates');
@@ -140,3 +145,17 @@ answerButton.onclick = async () => {
     });
   });
 };
+
+// Toggle video visibility
+videoIcon.addEventListener('click', () => {
+    videoIcon.classList.toggle('active');
+    if (videoIcon.classList.contains('active')) {
+        // Camera is off, show placeholder
+        webcamVideo.style.display = 'none';
+        localVideoPlaceholder.style.display = 'block';
+    } else {
+        // Camera is on, hide placeholder
+        webcamVideo.style.display = 'block';
+        localVideoPlaceholder.style.display = 'none';
+    }
+});
