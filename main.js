@@ -1,4 +1,5 @@
 import './style.css';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
