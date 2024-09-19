@@ -1,5 +1,4 @@
 import './style.css';
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -81,12 +80,19 @@ callButton.onclick = async () => {
 
   // Get candidates for caller, save to db
   pc.onicecandidate = (event) => {
-    event.candidate && offerCandidates.add(event.candidate.toJSON());
+    if (event.candidate) {
+      console.log('ICE candidate:', event.candidate.toJSON());
+      offerCandidates.add(event.candidate.toJSON());
+    }
   };
 
   // Create offer
   const offerDescription = await pc.createOffer();
   await pc.setLocalDescription(offerDescription);
+
+  pc.addEventListener('connectionstatechange', (event) => {
+    console.log('WebRTC connection state:', pc.connectionState);
+  });
 
   const offer = {
     sdp: offerDescription.sdp,
@@ -125,7 +131,10 @@ answerButton.onclick = async () => {
   const offerCandidates = callDoc.collection('offerCandidates');
 
   pc.onicecandidate = (event) => {
-    event.candidate && answerCandidates.add(event.candidate.toJSON());
+    if (event.candidate) {
+      console.log('ICE candidate:', event.candidate.toJSON());
+      answerCandidates.add(event.candidate.toJSON());
+    }
   };
 
   const callData = (await callDoc.get()).data();
