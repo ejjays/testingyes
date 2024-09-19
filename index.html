@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebRTC Demo</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call UI with Settings Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="./style.css" />
-  </head>
-  <body>
-    <h2>1. Start your Webcam</h2>
-    <div class="videos">
-      <span>
-        <h3>Local Stream</h3>
-        <video id="webcamVideo" autoplay playsinline></video>
-      </span>
-      <span>
-        <h3>Remote Stream</h3>
-        <video id="remoteVideo" autoplay playsinline></video>
-      </span>
+</head>
+<body>
 
-
+<div class="video-call-container">
+    <div class="video-section">
+        <div class="video-box">
+            <div class="username">Local Stream <i class="fa fa-microphone-slash" id="mic-icon-2"></i></div>
+            <video id="webcamVideo" autoplay muted></video> <!-- Your own video -->
+        </div>
+        <div class="video-box">
+            <div class="username">Remote stream <i class="fa fa-microphone" id="mic-icon"></i></div>
+            <video id="remoteVideo" autoplay></video> <!-- Placeholder for User 2 -->
+        </div>
     </div>
+    <div class="controls">
+        <i class="fa fa-microphone" id="mic-icon"></i>
+        <i class="fa fa-video" id="video-icon"></i>
+        <i class="fa fa-users"></i>
+        <i class="fa fa-cog" id="settings-icon"></i>
+    </div>
+</div>
 
-    <button id="webcamButton">Start webcam</button>
-    <h2>2. Create a new Call</h2>
+<div class="settings-panel" id="settings-panel">
+    <button class="back-button" id="back-button">Back</button> <br>
     <button id="callButton" disabled>Create Call (offer)</button>
-
-    <h2>3. Join a Call</h2>
-    <p>Answer the call from a different browser window or device</p>
     
+    <h2>Answer</h2>
     <input id="callInput" />
     <button id="answerButton" disabled>Answer</button>
+</div>
 
-    <h2>4. Hangup</h2>
+<button id="webcamButton">Start Webcam</button>
+<button id="hangupButton" disabled>Hangup</button>
 
-    <button id="hangupButton" disabled>Hangup</button>
+<script type="module" src="/main.js"></script>
 
-    <script type="module" src="/main.js"></script>
-    
-
-  </body>
+</body>
 </html>
