@@ -1,10 +1,11 @@
 import './style.css';
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
+  // your config
+  const firebaseConfig = {
   apiKey: "AIzaSyBJ7sD1YDAwtloLInnMuM6V9it3vFMPag0",
   authDomain: "ejjays-4ff24.firebaseapp.com",
   projectId: "ejjays-4ff24",
@@ -14,9 +15,10 @@ const firebaseConfig = {
   measurementId: "G-K8S3KYNQGZ"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const firestore = getFirestore(app);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+const firestore = firebase.firestore();
 
 const servers = {
   iceServers: [
